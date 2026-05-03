@@ -59,7 +59,10 @@ export function getSession() {
 }
 
 export async function signIn(email) {
-  return supabase.auth.signInWithOtp({ email })
+  return supabase.auth.signInWithOtp({
+    email,
+    options: { emailRedirectTo: window.location.origin + '/bash' },
+  })
 }
 
 export async function signOut() {
