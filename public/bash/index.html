@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bash / compose</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/bash/admin.css">
+  <script>
+    window.ENV = {
+      SUPABASE_URL: '%%SUPABASE_URL%%',
+      SUPABASE_ANON_KEY: '%%SUPABASE_ANON_KEY%%',
+    }
+  </script>
+</head>
+<body class="admin-body">
+
+  <!-- Login gate -->
+  <div id="login-screen" class="login-screen" hidden>
+    <h1 class="login-title">bash gala</h1>
+    <form id="login-form" class="login-form">
+      <input type="email" id="login-email" placeholder="your email" autocomplete="email" required>
+      <button type="submit">send link</button>
+    </form>
+    <p id="login-message" class="login-message" hidden></p>
+  </div>
+
+  <!-- Composer -->
+  <div id="composer-screen" class="composer-screen" hidden>
+    <header class="admin-header">
+      <span class="admin-name">bash gala</span>
+      <button id="sign-out" class="sign-out">sign out</button>
+    </header>
+
+    <form id="composer" class="composer">
+
+      <!-- Type selector -->
+      <div class="type-selector" role="group" aria-label="post type">
+        <label class="type-opt"><input type="radio" name="type" value="thought" checked> thought</label>
+        <label class="type-opt"><input type="radio" name="type" value="post"> post</label>
+        <label class="type-opt"><input type="radio" name="type" value="image"> image</label>
+        <label class="type-opt"><input type="radio" name="type" value="link"> link</label>
+      </div>
+
+      <!-- Context-sensitive fields -->
+      <div id="fields" class="fields">
+
+        <!-- thought -->
+        <div class="field-group" data-type="thought">
+          <textarea id="thought-body" name="body" placeholder="what's on your mind" rows="6"></textarea>
+        </div>
+
+        <!-- post -->
+        <div class="field-group" data-type="post">
+          <input type="text" id="post-title" name="title" placeholder="title">
+          <textarea id="post-synopsis" name="synopsis" placeholder="synopsis" rows="2"></textarea>
+          <textarea id="post-body" name="body" placeholder="body (markdown)" rows="12"></textarea>
+        </div>
+
+        <!-- image -->
+        <div class="field-group" data-type="image">
+          <div id="image-dropzone" class="image-dropzone" role="button" tabindex="0" aria-label="tap to upload image">
+            <input type="file" id="image-input" accept="image/*" multiple hidden>
+            <span>tap to upload</span>
+          </div>
+          <div id="image-previews" class="image-previews"></div>
+          <input type="text" id="image-caption" name="caption" placeholder="caption (optional)">
+        </div>
+
+        <!-- link -->
+        <div class="field-group" data-type="link">
+          <input type="url" id="link-url" name="url" placeholder="url">
+          <input type="text" id="link-title" name="title" placeholder="title (auto-fetched)">
+          <textarea id="link-note" name="body" placeholder="note (optional)" rows="3"></textarea>
+        </div>
+
+      </div>
+
+      <!-- Tags -->
+      <div class="tag-section">
+        <div id="selected-tags" class="selected-tags"></div>
+        <input type="text" id="tag-input" placeholder="# add tag" autocomplete="off">
+        <div id="tag-suggestions" class="tag-suggestions" hidden></div>
+      </div>
+
+      <!-- Actions -->
+      <div class="composer-actions">
+        <button type="button" id="save-draft" class="btn btn--secondary">save draft</button>
+        <button type="submit" id="publish" class="btn btn--primary">publish</button>
+      </div>
+
+      <p id="composer-status" class="composer-status" hidden></p>
+    </form>
+  </div>
+
+  <script type="module" src="/bash/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bash gala</title>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    window.ENV = {
+      SUPABASE_URL: '%%SUPABASE_URL%%',
+      SUPABASE_ANON_KEY: '%%SUPABASE_ANON_KEY%%',
+    }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="site-name">bash gala</a>
+  </header>
+
+  <main id="post-view" class="post-view">
+    <a href="/" class="back">←</a>
+    <div class="loading">—</div>
+  </main>
+
+  <script type="module" src="/posts/post.js"></script>
+</body>
+</html>

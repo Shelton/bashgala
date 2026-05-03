@@ -1,0 +1,23 @@
+name: bashgala
+region: nyc
+
+static_sites:
+  - name: bashgala
+    github:
+      repo: shelton-davis/bashgala
+      branch: main
+      deploy_on_push: true
+    source_dir: /
+    build_command: npm run build
+    output_dir: dist
+    routes:
+      - path: /
+    index_document: index.html
+    error_document: index.html
+    envs:
+      - key: SUPABASE_URL
+        scope: BUILD_TIME
+        type: SECRET
+      - key: SUPABASE_ANON_KEY
+        scope: BUILD_TIME
+        type: SECRET

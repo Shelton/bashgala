@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bash gala</title>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    window.ENV = {
+      SUPABASE_URL: '%%SUPABASE_URL%%',
+      SUPABASE_ANON_KEY: '%%SUPABASE_ANON_KEY%%',
+    }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="site-name">bash gala</a>
+  </header>
+
+  <main id="feed" class="feed">
+    <div class="loading">—</div>
+  </main>
+
+  <nav id="pagination" class="pagination" hidden></nav>
+
+  <div id="gallery-overlay" class="gallery-overlay" hidden aria-modal="true" role="dialog">
+    <button class="gallery-close" aria-label="close">✕</button>
+    <div class="gallery-image-wrap">
+      <img class="gallery-img" src="" alt="">
+    </div>
+    <div class="gallery-nav">
+      <button class="gallery-prev" aria-label="previous">←</button>
+      <button class="gallery-next" aria-label="next">→</button>
+    </div>
+    <p class="gallery-caption"></p>
+  </div>
+
+  <script type="module" src="/feed.js"></script>
+</body>
+</html>
