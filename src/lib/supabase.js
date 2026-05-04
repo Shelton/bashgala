@@ -58,11 +58,8 @@ export function getSession() {
   return supabase.auth.getSession()
 }
 
-export async function signIn(email) {
-  return supabase.auth.signInWithOtp({
-    email,
-    options: { emailRedirectTo: window.location.origin + '/bash' },
-  })
+export async function signIn(email, password) {
+  return supabase.auth.signInWithPassword({ email, password })
 }
 
 export async function signOut() {

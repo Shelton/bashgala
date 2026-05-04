@@ -32,10 +32,13 @@ function showScreen(name) {
 document.getElementById('login-form').addEventListener('submit', async e => {
   e.preventDefault()
   const email = document.getElementById('login-email').value
+  const password = document.getElementById('login-password').value
   const msg = document.getElementById('login-message')
-  await signIn(email)
-  msg.textContent = 'check your email for a magic link.'
-  msg.hidden = false
+  const { error } = await signIn(email, password)
+  if (error) {
+    msg.textContent = 'incorrect email or password.'
+    msg.hidden = false
+  }
 })
 
 document.getElementById('sign-out').addEventListener('click', async () => {
