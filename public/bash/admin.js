@@ -13,10 +13,7 @@ async function init() {
   session = data.session
 
   supabase.auth.onAuthStateChange((event, s) => {
-    if (event === 'SIGNED_IN') {
-      session = s
-      showScreen('composer')
-    } else if (event === 'SIGNED_OUT') {
+    if (event === 'SIGNED_OUT') {
       session = null
       showScreen('login')
     }
@@ -45,8 +42,8 @@ document.getElementById('login-form').addEventListener('submit', async e => {
     msg.hidden = false
   } else {
     session = data.session
-    allTags = await fetchAllTags()
     showScreen('composer')
+    try { allTags = await fetchAllTags() } catch {}
   }
 })
 
