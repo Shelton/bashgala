@@ -12,9 +12,14 @@ async function init() {
   const { data } = await getSession()
   session = data.session
 
-  supabase.auth.onAuthStateChange((_event, s) => {
-    session = s
-    showScreen(s ? 'composer' : 'login')
+  supabase.auth.onAuthStateChange((event, s) => {
+    if (event === 'SIGNED_IN') {
+      session = s
+      showScreen('composer')
+    } else if (event === 'SIGNED_OUT') {
+      session = null
+      showScreen('login')
+    }
   })
 
   showScreen(session ? 'composer' : 'login')
