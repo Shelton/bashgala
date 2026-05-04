@@ -34,10 +34,14 @@ document.getElementById('login-form').addEventListener('submit', async e => {
   const email = document.getElementById('login-email').value
   const password = document.getElementById('login-password').value
   const msg = document.getElementById('login-message')
-  const { error } = await signIn(email, password)
+  const { data, error } = await signIn(email, password)
   if (error) {
     msg.textContent = 'incorrect email or password.'
     msg.hidden = false
+  } else {
+    session = data.session
+    allTags = await fetchAllTags()
+    showScreen('composer')
   }
 })
 
